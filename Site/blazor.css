@@ -1,0 +1,269 @@
+:root {
+    --primary: #f74e38;
+    --secondary: #f8b182;
+    --dark: #F5F5F5;
+    --light: #1D1D1D;
+    --gray: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.5rem 0;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    color: var(--primary);
+    margin: 1.5rem 0 1.5rem;
+    font-size: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--gray);
+}
+
+h3 {
+    color: var(--secondary);
+    margin: 2rem 0 1rem;
+    font-size: 1.5rem;
+}
+
+h4 {
+    margin: 1.5rem 0 0.8rem;
+    color: var(--dark);
+}
+
+p {
+    margin-bottom: 1.4rem;
+}
+
+nav {
+    background-color: rgb(56, 53, 53);
+    padding: 1rem 0 0 0;
+    box-shadow: 0 2px 10px rgba(250, 250, 250, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 4rem;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.5rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.section {
+    background-color: #252525;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    /* box-shadow: 0 2px 6px rgba(234, 213, 213, 0.1); */
+    box-shadow: 0px 0px 18px 0px rgba(252,247,252,0.2);
+}
+
+.presentation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    padding: 0;
+}
+
+.texte {
+    width: 65%;
+    padding: 1rem;
+}
+
+.presentation h1 {
+    font-size: 2.8rem;
+    color: var(--primary);
+    border-bottom: 2px solid var(--gray);
+    margin-bottom: 2rem;
+}
+
+.presentation p {
+    font-size: 1.35rem;
+    padding-top: 1rem;
+}
+
+.image {
+    width: 35%;
+    background-color: #4a4747;
+    padding: 1rem;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.card {
+    background-color: var(--light);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--primary);
+}
+
+.card h4 {
+    color: var(--primary);
+}
+
+.code-block {
+    background-color: #282c34;
+    color: #abb2bf;
+    padding: 1.2rem;
+    border-radius: 6px;
+    font-family: 'Consolas', monospace;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background-color: rgb(52, 46, 46);
+}
+
+th,
+td {
+    border: 1px solid var(--gray);
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary);
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #756262;
+}
+
+ul,
+ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+.highlight {
+    background-color: rgba(81, 43, 212, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.pros-cons {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.pros,
+.cons {
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.pros {
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left: 4px solid #4caf50;
+}
+
+.cons {
+    background-color: rgba(244, 67, 54, 0.1);
+    border-left: 4px solid #f44336;
+}
+
+a {
+    color: #a56342e3;
+    transition:all 0.5s;
+}
+a:hover {
+    color: #e07945;
+}
+
+footer {
+    background-color: rgb(56, 53, 53);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 2rem 0 0.5rem;
+    margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .pros-cons {
+        flex-direction: column;
+    }
+}

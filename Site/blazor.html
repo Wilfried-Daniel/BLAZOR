@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blazor - Exposé Complet</title>
+    <link rel="stylesheet" href="blazor.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>BLAZOR by Groupe F</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#modeles">Modes d'hébergement</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#avantages">Avantages/Inconvénients</a></li>
+            <li><a href="#comparaison">Comparaison</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+
+        <section class="section presentation">
+            <div class="texte">
+                <h1>BLAZOR</h1>
+                <p>
+                    Créez des applications webs modernes, tirant parti de la puissance du C# et de .NET<br>
+                    Decouvrons ensemble une nouvelle façon de concevoir le futur du web.
+                </p>
+            </div>
+            <div class="image">
+                <img src="blazor-svgrepo-com.svg" alt="">
+            </div>
+        </section>
+
+        <section id="introduction" class="section">
+            <h2>1. Introduction</h2>
+            <p>Blazor est un framework web open source développé par Microsoft qui permet de développer des applications web modernes. Il permet de
+                construire des interfaces utilisateur interactives en utilisant le langage C#. Il repose sur le moteur Razor qui est déjà utilisé par les applications ASP.NET et l'intégration avec WebAssembly.</p>
+
+            <h3>Principales caractéristiques :</h3>
+            <ul>
+                <li><strong>Plus de C#, moins de JS</strong> : Moins besoin de JS, tout est géré en .NET</li>
+                <li><strong>Modèle de composants</strong> : Similaire à React, Angular ou Vue</li>
+                <li><strong>Interopérabilité avec JavaScript</strong> : Possibilité d'appeler des fonctions JS depuis C#
+                    et vice versa</li>
+                <li><strong>Intégration avec .NET</strong> : Accès aux bibliothèques .NET Standard</li>
+                <li><strong>Deux modes d'exécution</strong> : Server et WebAssembly</li>
+            </ul>
+        </section>
+
+        <section id="modeles" class="section">
+            <h2>2. Les Deux Modèles d'Hébergement Blazor</h2>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>A. Blazor Server</h3>
+                    <p>Le code C# s'exécute <strong>côté serveur</strong>. L'UI est mise à jour en temps réel via
+                        <strong>SignalR</strong> (WebSockets).
+                    </p>
+
+                    <h4>Avantages :</h4>
+                    <ul>
+                        <li>Temps de chargement rapide</li>
+                        <li>Moins de consommation de mémoire côté client</li>
+                        <li>Compatibile avec tous les navigateurs (pas besoin de WebAssembly)</li>
+                    </ul>
+
+                    <h4>Inconvénients :</h4>
+                    <ul>
+                        <li>Nécessite une connexion permanente au serveur</li>
+                        <li>Problèmes de scalabilité</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>B. Blazor WebAssembly (WASM)</h3>
+                    <p>Le code C# est compilé en <strong>WebAssembly</strong> et s'exécute directement dans le
+                        navigateur.</p>
+
+                    <h4>Avantages :</h4>
+                    <ul>
+                        <li>Fonctionne hors ligne (PWA)</li>
+                        <li>Réduit la charge serveur</li>
+                        <li>Meilleure expérience utilisateur (pas de latence)</li>
+                    </ul>
+
+                    <h4>Inconvénients :</h4>
+                    <ul>
+                        <li>Taille du téléchargement initial plus importante</li>
+                        <li>Performances limitées par le navigateur</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="section">
+            <h2>3. Architecture et Fonctionnement</h2>
+
+            <h3>A. Installation de .NET</h3>
+            <p>L'utilisation de Blazor necessite le téléchargement et l'installation du SDK <span class="highlight">.NET</span> via ce lien de <a href="https://dotnet.microsoft.com/download" target="_blank" rel="noopener">Microsoft</a> <br>Ensuite vérifier la version via cette ligne de commande : </p>
+
+            <div class="code-block">
+                dotnet --version
+            </div>
+
+            <p>Le developpeur pourra ensuite choisir comment héberger son projet entre Blazor server et Blazor WebAssembly</p>
+
+            <div class="code-block">
+                //BLAZOR SERVER <br> dotnet new blazorserver -o MyBlazorServerApp
+            </div>
+            <div class="code-block">
+                //BLAZOR WEBASSEMBLY <br> dotnet new blazorwasm -o MyBlazorWasmApp
+            </div>
+
+            <h3>B. Composants Blazor</h3>
+            <p>Blazor utilise des composants (fichier <span class="highlight">.razor</span>) pour structurer l'application. Ces composants sont une Combinaison de
+                HTML et de C# (avec syntaxe Razor).</p>
+
+            <div class="code-block">
+                // Exemple de composant<br>
+                &lt;h1&gt;Bonjour, @Name !&lt;/h1&gt;
+
+                @code {
+                [Parameter]
+                public string Name { get; set; } = "Utilisateur";
+                }
+            </div>
+
+            <h3>C. Cycle de Vie des Composants</h3>
+            <p>Méthodes importantes :</p>
+            <ul>
+                <li><strong>OnInitializedAsync()</strong> : Chargement initial</li>
+                <li><strong>OnParametersSetAsync()</strong> : Mise à jour des paramètres</li>
+                <li><strong>OnAfterRenderAsync()</strong> : Après le rendu</li>
+            </ul>
+
+            <h3>D. Gestion des Événements</h3>
+            <div class="code-block">
+                &lt;button @onclick="IncrementCount"&gt;Cliquez ici&lt;/button&gt;
+
+                @code {
+                private int count = 0;
+                private void IncrementCount() => count++;
+                }
+            </div>
+
+            <h3>E. Liaison de Données (Data Binding)</h3>
+            <p>
+                C'est une technique utilisée pour lier les données de l'application généralement des variables ou des objets à l'interface utilisateur.<br>Elle simplifie la gestion de l'UI et des données en évitant d'avoir à manipuler manuellement les éléments de l'interface.
+            </p>
+            <ul>
+                <li><strong>One-way binding (liaison unidirectionnelle)</strong> : <span class="highlight">@variable</span></li>
+                <li><strong>Two-way binding (liaison bidirectionnelle)</strong> : <span class="highlight">@bind="property"</span></li>
+            </ul>
+
+            <h3>F. Interopérabilité avec JavaScript</h3>
+            <div class="code-block">
+                // Appeler JavaScript depuis C#<br>
+                await JSRuntime.InvokeVoidAsync("maFonctionJS");<br><br>
+
+                // Appeler C# depuis JavaScript<br>
+                [JSInvokable]
+                public static string GetMessage() => "Hello from C#!";
+            </div>
+        </section>
+
+        <section id="avantages" class="section">
+            <h2>4. Avantages et Inconvénients de Blazor</h2>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Avantages </h3>
+                    <ul>
+                        <li>Développement full-stack en C#</li>
+                        <li>Meilleure productivité pour les devs .NET</li>
+                        <li>Performances solides (surtout Blazor Server)</li>
+                        <li>Interopérabilité avec JavaScript</li>
+                        <li>Accès à l'écosystème .NET</li>
+                    </ul>
+                </div>
+
+                <div class="cons">
+                    <h3>Inconvénients </h3>
+                    <ul>
+                        <li>Taille importante en WebAssembly</li>
+                        <li>Moins mature que React/Angular</li>
+                        <li>Limitations de WebAssembly (accès direct au DOM limité)</li>
+                        <li>Écosystème de composants UI moins développé</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparaison" class="section">
+            <h2>5. Comparaison avec d'autres Frameworks</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Critère</th>
+                        <th>Blazor</th>
+                        <th>React/Angular</th>
+                        <th>Vue.js</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Langage</td>
+                        <td>C#</td>
+                        <td>JavaScript/TS</td>
+                        <td>JavaScript/TS</td>
+                    </tr>
+                    <tr>
+                        <td>Modèle</td>
+                        <td>Composants</td>
+                        <td>Composants</td>
+                        <td>Composants</td>
+                    </tr>
+                    <tr>
+                        <td>Execution</td>
+                        <td>C# (WASM/Server)</td>
+                        <td>JS (Navigateur)</td>
+                        <td>JS (Navigateur)</td>
+                    </tr>
+                    <tr>
+                        <td>Écosystème</td>
+                        <td>.NET</td>
+                        <td>NPM</td>
+                        <td>NPM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="conclusion" class="section">
+            <h2>6. Conclusion</h2>
+            <p>Blazor est une technologie prometteuse pour les développeurs .NET qui souhaitent créer des applications
+                web modernes sans JavaScript. Avec ses deux modèles (Server et WebAssembly), il offre flexibilité et
+                performance. Bien qu'encore jeune, Blazor évolue rapidement et pourrait devenir une alternative sérieuse
+                aux frameworks JavaScript traditionnels.</p>
+
+            <h3>Ressources pour Approfondir</h3>
+            <ul>
+                <li><a href="https://learn.microsoft.com/fr-fr/aspnet/core/blazor/" target="_blank"
+                        rel="noopener">Documentation Officielle Microsoft</a></li>
+                <li><a href="https://github.com/dotnet/aspnetcore" target="_blank" rel="noopener">GitHub Blazor</a></li>
+                <li><a href="https://www.youtube.com/results?search_query=blazor" target="_blank" rel="noopener">Tutoriels Blazor sur YouTube</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Veille Technologique sur Blazor by Groupe F - Tous droits réservés © 2025</p>
+        </div>
+    </footer>
+</body>
+
+</html>
